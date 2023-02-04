@@ -16,3 +16,8 @@ DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=root
 ```
+* запускаем контейнер
+```
+docker compose up
+```
+* Переходим на **localhost:80**, видим страницу, которая предлагает нам сгенерировать APP_KEY. Генерируем ключ, после чего появляется стартовая страница laravel 
