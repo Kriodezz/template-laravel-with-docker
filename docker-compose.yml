@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:stable-alpine
+        ports:
+            - '80:80'
+        volumes:
+            - .:/var/www/
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+            - php
+        container_name: nginx
+
+    php:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        restart: always
+        volumes:
+            - .:/var/www/
+            - ./docker/php/config/php.ini:/usr/local/etc/php/php.ini
+        depends_on:
+            - mysql
+        container_name: php
+
+    mysql:
+        image: mysql:latest
+        restart: always
+        env_file: docker/mysql/config/config.env
+        ports:
+            - '3306:3306'
+        volumes:
+            - ./docker/mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./tmp/db/:/var/lib/mysql/
+        container_name: mysql
