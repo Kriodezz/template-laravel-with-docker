@@ -7,7 +7,7 @@ git clone https://github.com/Kriodezz/template-laravel-with-docker.git .
 
 composer install
 ```
-* создаем в корне файл .env (копировать-вставить .env.example). В подключении к бд указываем
+* создаем в корне файл .env (копировать-вставить .env.example). В подключении к бд указываем:
 ```
 DB_CONNECTION=mysql
 DB_HOST=mysql
